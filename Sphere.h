@@ -30,8 +30,8 @@ class Sphere
 	
 
 		// Constructor
-		Sphere(int resid, int atomid, double diam, double Mass, Vector3D& pos) : residueID{resid}, atomID{atomid}, diameter{diam}, mass{Mass}, position{pos}, velocity{{0,0,0}}, force{{0,0,0}}, velocity_old{{0,0,0}}, force_old{{0,0,0}}, displacement{{0,0,0}} {} 
-		Sphere(int resid, int atomid, double diam, double Mass, Vector3D& pos, Vector3D& vel, Vector3D& force_) : residueID{resid}, atomID{atomid}, diameter{diam}, mass{Mass}, position{pos}, velocity{vel}, force{force_}, velocity_old{{0,0,0}}, force_old{force_}, displacement{{0,0,0}} {} 
+		Sphere(int resid, int atomid, double diam, double Mass, Vector3D& pos) : residueID{resid}, atomID{atomid}, diameter{diam}, mass{Mass}, position{pos}, velocity{}, force{}, velocity_old{}, force_old{}, displacement{} {}
+		Sphere(int resid, int atomid, double diam, double Mass, Vector3D& pos, Vector3D& vel, Vector3D& force_) : residueID{resid}, atomID{atomid}, diameter{diam}, mass{Mass}, position{pos}, velocity{vel}, force{force_}, velocity_old{}, force_old{force_}, displacement{} {} 
 
 
 

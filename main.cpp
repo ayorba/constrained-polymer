@@ -19,6 +19,9 @@ int main(int argc, char *argv[])
 
 	SimulationArgs args = parseCommandLine(argc, argv);
 
+	printArgs(&args);
+	exit(0);
+
 	// MD parameters
 	std::string simtype=args.simtype;
 	double dt = args.dt;
