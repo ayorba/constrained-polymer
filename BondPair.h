@@ -16,7 +16,7 @@ class BondPair : public Bond
 		BondPair(std::initializer_list<int> sphIDs, std::unordered_map<int, std::shared_ptr<Sphere>>& spheremap, double bond_stiffness, double blength) : Bond(sphIDs, spheremap, bond_stiffness), bond_length{blength} {}
 
 
-		void print() override
+		void print()
 		{
 			std::cout<<"Bond sphere IDs:\n";
 

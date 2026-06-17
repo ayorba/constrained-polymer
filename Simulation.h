@@ -58,13 +58,6 @@ class Simulation
 	{
 		spheres.push_back(sph);
 	}
-	void addSpheres(std::vector<std::shared_ptr<Sphere>>& sphs)
-	{
-		for(std::size_t i=0; i<sphs.size(); ++i)
-		{
-			spheres.push_back(sphs[i]);
-		}
-	}
 
 
 	// Permanent Bonds //
@@ -96,13 +89,6 @@ class Simulation
 	void addResidues(Residue& newres)
 	{
 		residues.push_back(newres);
-	}
-	void addResidues(std::vector<Residue>& newres)
-	{
-		for(std::size_t i=0; i<newres.size(); ++i)
-		{
-			residues.push_back(newres[i]);
-		}
 	}
 
 

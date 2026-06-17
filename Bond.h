@@ -20,8 +20,6 @@ class Bond
 
 		Bond(std::initializer_list<int> sphIDs, std::unordered_map<int, std::shared_ptr<Sphere>>& spheremap, double stiff) : sphereIDs{sphIDs}, sphereMap{spheremap}, stiffness{stiff} {}
 
-		virtual void print() = 0;
-
 };
 
 

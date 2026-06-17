@@ -1,7 +1,6 @@
 #ifndef VECTOR3D_H
 #define VECTOR3D_H
 
-#include <vector>
 #include <cmath>
 #include <iostream>
 
@@ -10,12 +9,11 @@ class Vector3D
 {
 
 	public:
-	
+
 	double x,y,z;
 
 	Vector3D() : x{0.0}, y{0.0}, z{0.0}{}
 	Vector3D(double X, double Y, double Z) : x{X}, y{Y}, z{Z}{}
-	Vector3D(const std::vector<double>& vec) : x{vec[0]}, y{vec[1]}, z{vec[2]}{}
 
 
 	// Zero Vector

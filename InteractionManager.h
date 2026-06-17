@@ -17,10 +17,8 @@ class InteractionManager
 		double Etot;
 
 	
-		double Fmag_total_avg;
 		double Fmag_max;
-		double Fmag_threshold;
-		static constexpr double Fthreshold = 1e-13;//1e-14;
+		static constexpr double Fthreshold = 1e-13;
 
 		double max_overlap;
 

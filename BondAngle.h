@@ -17,7 +17,7 @@ class BondAngle : public Bond
 		BondAngle(std::initializer_list<int> sphIDs, std::unordered_map<int, std::shared_ptr<Sphere>>& spheremap, double bond_stiffness, double fa, double ca) : Bond(sphIDs, spheremap, bond_stiffness), fixed_angle{fa}, current_angle{ca} {}
 
 
-		void print() override
+		void print()
 		{
 			std::cout<<"Bond sphere IDs:\n";
 

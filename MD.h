@@ -25,7 +25,6 @@ class MD
 		double temperature;
 
 		static constexpr double verlet_skin = 1.2;
-		static constexpr double verlet_skin_mult = 1.0;
 		static constexpr double mindt = 1e-5;
 		static constexpr double maxdt = 1.0;
 
