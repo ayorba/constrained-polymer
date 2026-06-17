@@ -1,6 +1,7 @@
-input/*
-output/*
+input/
+output/
 polymer
-.venv
-__pycache__
-pdb_structures
+.venv/
+__pycache__/
+pdb_structures/
+papers/
