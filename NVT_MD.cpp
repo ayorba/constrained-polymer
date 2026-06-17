@@ -26,7 +26,6 @@ void MD::NVT_MD(double desired_temp)
 	Vector3D noise_vec;
 	Vector3D disp;
 
-
 	// Compute the velocity and position at t + dt/2
 	for(const auto& sph_ptr : sim->spheres)
 	{
@@ -37,7 +36,6 @@ void MD::NVT_MD(double desired_temp)
 		sph->position += disp;
 		sph->displacement += disp;
 	}
-
 
 	// Update frictional and stochastic terms
 	for(const auto& sph_ptr : sim->spheres)
@@ -52,7 +50,6 @@ void MD::NVT_MD(double desired_temp)
 		sph->velocity = exp_gamma_dt*sph->velocity + fluct * noise_vec;
 	}
 
-
 	// Compute the position at t + dt
 	for(const auto& sph_ptr : sim->spheres)
 	{
@@ -63,16 +60,13 @@ void MD::NVT_MD(double desired_temp)
 		sph->displacement += disp;
 	}
 
-
 	// Compute the force at t + dt
 	interman->computeInteractions();
-
 
 	// Compute the velocity at t + dt/2
 	for(const auto& sph_ptr : sim->spheres)
 	{
 		auto* sph = sph_ptr.get();
-
 		sph->velocity += 0.5*deltat * sph->force / sph->mass;
 	}
 

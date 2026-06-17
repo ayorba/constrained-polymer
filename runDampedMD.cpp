@@ -18,7 +18,6 @@ void MD::runDampedMD()
 
 	do
 	{
-
 		// Run MD step
 		dampedMD();
 
@@ -26,9 +25,8 @@ void MD::runDampedMD()
 		makeVerletList();
 
 		// Write Files
-		if(step % writestep==0)
+		if(step % writestep==0) // Compute extra quantities
 		{
-			// Compute extra quantities
 			computeTemp();
 			sim->computeRg();
 			interman->Etot = interman->KE + interman->PE;

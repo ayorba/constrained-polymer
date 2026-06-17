@@ -14,14 +14,10 @@
 #include "MD.h"
 #include "SimulationArgs.h"
 
-
 int main(int argc, char *argv[])
 {
 
-
-	// Read in command line args
 	SimulationArgs args = parseCommandLine(argc, argv);
-
 
 	// MD parameters
 	std::string simtype=args.simtype;

@@ -1,10 +1,6 @@
 #include "Vector3D.h"
 #include "Simulation.h"
 
-
-// Calculate the center of mass of the polymer and return it
-
-
 Vector3D Simulation::getCOM()
 {
 

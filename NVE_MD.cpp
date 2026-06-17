@@ -1,9 +1,7 @@
 #include "MD.h"
 
-
 // Run NVE molecular dynamics algorithm
-
-
+// velocity-verlet integration scheme with constant energy
 void MD::NVE_MD()
 {
 
@@ -17,10 +15,8 @@ void MD::NVE_MD()
 		sph->displacement += deltat*sph->velocity;
 	}
 
-
 	// Compute the force at t + dt
 	interman->computeInteractions();
-
 
 	// Compute the velocities at t + dt
 	for(const auto& sph_ptr : sim->spheres)
@@ -28,7 +24,6 @@ void MD::NVE_MD()
 		auto* sph = sph_ptr.get();
 		sph->velocity += 0.5*deltat * (sph->force / sph->mass);
 	}
-
 }
 
 

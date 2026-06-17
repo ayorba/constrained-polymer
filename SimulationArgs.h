@@ -42,6 +42,20 @@ void printUsage()
 }
 
 
+void printArgs(SimulationArgs* args)
+{
+	std::cout<<"SimType: "<<args->simtype<<"\n";
+	std::cout<<"dt: "<<args->dt<<"\n";
+	std::cout<<"damping: "<<args->damping<<"\n";
+	std::cout<<"initial_temp: "<<args->initial_temp<<"\n";
+	std::cout<<"writestep: "<<args->writestep<<"\n";
+	std::cout<<"IN: "<<args->IN<<"\n";
+	std::cout<<"infile: "<<args->infile<<"\n";
+	std::cout<<"OUT: "<<args->OUT<<"\n";
+	std::cout<<"CF_mag: "<<args->CF_mag<<"\n";
+	std::cout<<"cont_sim: "<<args->cont_sim<<"\n";
+}
+
 SimulationArgs parseCommandLine(int argc, char* argv[]) {
 	if (argc != 11) 
 	{
@@ -66,7 +80,4 @@ SimulationArgs parseCommandLine(int argc, char* argv[]) {
 
 }
 
-
 #endif
-
-
