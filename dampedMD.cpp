@@ -12,7 +12,7 @@
 void MD::dampedMD()
 {
 
-	double deltat_sq = deltat*deltat;
+	double deltat_sq = dt*dt;
 	Vector3D disp;
 
 
@@ -20,7 +20,7 @@ void MD::dampedMD()
 	for(const auto& sph_ptr : sim->spheres)
 	{
 		auto* sph = sph_ptr.get();
-		disp = (sph->velocity*deltat) + (0.5*deltat_sq * (sph->force_old / sph->mass));
+		disp = (sph->velocity*dt) + (0.5*deltat_sq * (sph->force_old / sph->mass));
 		sph->position += disp;
 		sph->displacement += disp;
 	}
@@ -34,7 +34,7 @@ void MD::dampedMD()
 	for(const auto& sph_ptr : sim->spheres)
 	{	
 		auto* sph = sph_ptr.get();
-		sph->force = (sph->force - (sph->mass*damping*sph->velocity) - ((0.5*deltat*damping)*sph->force_old)) / (1.0 + 0.5*damping*deltat);
+		sph->force = (sph->force - (sph->mass*damping*sph->velocity) - ((0.5*dt*damping)*sph->force_old)) / (1.0 + 0.5*damping*dt);
 	}
 
 
@@ -57,7 +57,7 @@ void MD::dampedMD()
 	for(const auto& sph_ptr : sim->spheres)
 	{	
 		auto* sph = sph_ptr.get();
-		sph->velocity += 0.5*(sph->force_old + sph->force) * (deltat / sph->mass);
+		sph->velocity += 0.5*(sph->force_old + sph->force) * (dt / sph->mass);
 	}
 
 

@@ -10,9 +10,9 @@ void MD::NVE_MD()
 	{
 		auto* sph = sph_ptr.get();
 
-		sph->velocity += 0.5*deltat * (sph->force / sph->mass);
-		sph->position += deltat*sph->velocity;
-		sph->displacement += deltat*sph->velocity;
+		sph->velocity += 0.5*dt * (sph->force / sph->mass);
+		sph->position += dt*sph->velocity;
+		sph->displacement += dt*sph->velocity;
 	}
 
 	// Compute the force at t + dt
@@ -22,7 +22,7 @@ void MD::NVE_MD()
 	for(const auto& sph_ptr : sim->spheres)
 	{
 		auto* sph = sph_ptr.get();
-		sph->velocity += 0.5*deltat * (sph->force / sph->mass);
+		sph->velocity += 0.5*dt * (sph->force / sph->mass);
 	}
 }
 

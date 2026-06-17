@@ -34,7 +34,7 @@ void MD::runNVT(double desired_temp, int numsteps, bool write)
 			std::cout << "\r[NVT] Step: " << std::setw(10) << step << " / " << numsteps
 			          << "  |  Temp: " << std::scientific << std::setprecision(4) << temperature
 			          << "  |  PE: "   << std::setprecision(6) << interman->PE
-			          << "  |  dt: "   << std::setprecision(3) << deltat
+			          << "  |  dt: "   << std::setprecision(3) << dt
 			          << "   \n"
 			          << "[p] pause simulation   " << std::flush;
 			status_initialized = true;

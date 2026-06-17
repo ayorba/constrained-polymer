@@ -57,7 +57,7 @@ bool MD::checkForPause(int step)
 	std::cout << "Resume command:\n  ./polymer "
 	          << simtype << " "
 	          << std::scientific << std::setprecision(6)
-	          << deltat     << " "
+	          << dt     << " "
 	          << damping    << " "
 	          << temperature << " "
 	          << std::defaultfloat << writestep << " "

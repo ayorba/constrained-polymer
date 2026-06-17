@@ -17,7 +17,7 @@ class MD
 		std::string input_filename;
 		std::string OUT;
 		std::string simtype;
-		double deltat;
+		double dt;
 		double damping;
 		double CF_mag;
 		int writestep;
@@ -29,7 +29,7 @@ class MD
 		static constexpr double maxdt = 1.0;
 
 
-		MD(Simulation* simulation, InteractionManager* interaction_manager, std::string& inpath, std::string& infile, std::string& outpath, double dt, double damp_param, int writestep_, double initial_temp, std::string simtype_, double cf_mag) : sim{simulation}, interman{interaction_manager}, IN{inpath}, input_filename{infile}, OUT{outpath}, simtype{simtype_}, deltat{dt}, damping{damp_param}, CF_mag{cf_mag}, writestep{writestep_}, temperature{initial_temp} {}
+		MD(Simulation* simulation, InteractionManager* interaction_manager, std::string& inpath, std::string& infile, std::string& outpath, double dt, double damp_param, int writestep_, double initial_temp, std::string simtype_, double cf_mag) : sim{simulation}, interman{interaction_manager}, IN{inpath}, input_filename{infile}, OUT{outpath}, simtype{simtype_}, dt{dt}, damping{damp_param}, CF_mag{cf_mag}, writestep{writestep_}, temperature{initial_temp} {}
 
 
 		void initializeTemp();

@@ -20,7 +20,7 @@ void MD::NVT_MD(double desired_temp)
 	std::mt19937 gen(rd());
 	std::normal_distribution<double> noise(0.0, 1.0);
 
-	const double exp_gamma_dt = exp(-damping*deltat);	
+	const double exp_gamma_dt = exp(-damping*dt);	
 	const double fluc_coeff = sqrt(1.0 - exp_gamma_dt*exp_gamma_dt);
 	double fluct;
 	Vector3D noise_vec;
@@ -31,8 +31,8 @@ void MD::NVT_MD(double desired_temp)
 	{
 		auto* sph = sph_ptr.get();
 
-		sph->velocity += 0.5*deltat * sph->force / sph->mass;
-		disp = 0.5*deltat * sph->velocity;
+		sph->velocity += 0.5*dt * sph->force / sph->mass;
+		disp = 0.5*dt * sph->velocity;
 		sph->position += disp;
 		sph->displacement += disp;
 	}
@@ -55,7 +55,7 @@ void MD::NVT_MD(double desired_temp)
 	{
 		auto* sph = sph_ptr.get();
 
-		disp = 0.5*deltat * sph->velocity;
+		disp = 0.5*dt * sph->velocity;
 		sph->position += disp;
 		sph->displacement += disp;
 	}
@@ -67,7 +67,7 @@ void MD::NVT_MD(double desired_temp)
 	for(const auto& sph_ptr : sim->spheres)
 	{
 		auto* sph = sph_ptr.get();
-		sph->velocity += 0.5*deltat * sph->force / sph->mass;
+		sph->velocity += 0.5*dt * sph->force / sph->mass;
 	}
 
 

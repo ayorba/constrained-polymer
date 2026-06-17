@@ -39,7 +39,7 @@ void MD::runDampedMD()
 			          << "  |  Temp: " << std::scientific << std::setprecision(4) << temperature
 			          << "  |  PE: "   << std::setprecision(6) << interman->PE
 			          << "  |  Fmax: " << std::setprecision(3) << interman->Fmag_max
-			          << "  |  dt: "   << deltat
+			          << "  |  dt: "   << dt
 			          << "   \n"
 			          << "[p] pause simulation   " << std::flush;
 			status_initialized = true;
