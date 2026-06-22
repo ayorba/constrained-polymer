@@ -5,3 +5,7 @@ polymer
 __pycache__/
 pdb_structures/
 papers/
+*.png
+*.jpg
+*.jpeg
+*.mp4
