@@ -4,6 +4,7 @@
 import sys
 import numpy as np
 from Bio.PDB import PDBParser, MMCIFParser
+import Bio.PDB as PDB
 
 import matplotlib
 matplotlib.rcParams.update({"mathtext.fontset": "stix", "font.family": "STIXGeneral"})
@@ -27,26 +28,12 @@ def rg_n(coords, n):
     windows = np.lib.stride_tricks.sliding_window_view(coords, (n, 3)).reshape(-1, n, 3)
     r_com = windows.mean(axis=1, keepdims=True)
     return np.sqrt(((windows - r_com) ** 2).sum(axis=2).mean(axis=1)).mean()
-
-
-def load_pdb(filename: str):
-    if filename.endswith(".pdb"):
-        pdb_parser = PDBParser(QUIET=True)
-        structure = pdb_parser.get_structure("p", filename)
-        return structure
-
-def load_mmcif(filename: str):
-    if filename.endswith(".cif"):
-        mmcif_parser = MMCIFParser(QUIET=True)
-        structure = mmcif_parser.get_structure("p", filename)
-        return structure
         
-
 if __name__ == "__main__":
-
     pdb_file = sys.argv[1]
     parser = PDBParser(QUIET=True)
     struct = parser.get_structure("p", pdb_file)
+    import ipdb; ipdb.set_trace()
     coords = np.array([r["CA"].get_vector().get_array()
                        for r in struct.get_residues() if "CA" in r])
     N = len(coords)
