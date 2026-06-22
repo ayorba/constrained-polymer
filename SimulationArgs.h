@@ -52,7 +52,7 @@ void printUsage()
 
         << "Labeled form:\n"
         << "  " << program << "\n"
-        << "    --simtype TYPE\n"
+        << "    --simtype {NVE,dampedMD,collapse_polymer}\n"
         << "    --dt VALUE\n"
         << "    --damping VALUE\n"
         << "    --initial-temp VALUE\n"
@@ -61,20 +61,20 @@ void printUsage()
         << "    --infile FILE\n"
         << "    --out DIRECTORY\n"
         << "    --cf-mag VALUE\n"
-        << "    --cont-sim 0|1\n\n"
+        << "    --cont-sim {0,1}\n\n"
 
         << "Options:\n"
-        << "  --simtype TYPE        Simulation type, for example NVE\n"
-        << "  --dt VALUE            Simulation time step; must be > 0\n"
-        << "  --damping VALUE       Damping value; must be >= 0\n"
-        << "  --initial-temp VALUE  Initial temperature; must be >= 0\n"
-        << "  --writestep INTEGER   Output interval; must be > 0\n"
-        << "  --in DIRECTORY        Input directory\n"
-        << "  --infile FILE         Input configuration filename\n"
-        << "  --out DIRECTORY       Output directory\n"
-        << "  --cf-mag VALUE        CF magnitude; must be >= 0\n"
-        << "  --cont-sim 0|1        Continue an existing simulation\n"
-        << "  -h, --help            Show this help message\n";
+        << "  --simtype TYPE\tSimulation type, {NVE, dampedMD, collapse_polymer}\n"
+        << "  --dt VALUE\t\tSimulation time step, must be > 0\n"
+        << "  --damping VALUE\tDamping coefficient, must be >= 0\n"
+        << "  --initial-temp VALUE\tInitial temperature, must be >= 0\n"
+        << "  --writestep INTEGER\tOutput interval in steps, must be > 0\n"
+        << "  --in DIRECTORY\tInput directory\n"
+        << "  --infile FILE\t\tInput configuration filename\n"
+        << "  --out DIRECTORY\tOutput directory\n"
+        << "  --cf-mag VALUE\tCentral force magnitude, must be >= 0, default: 0\n"
+        << "  --cont-sim INTEGER\tContinue an existing simulation, {0, 1}, default: 0\n"
+        << "  -h, --help\t\tShow this help message\n";
 }
 
 void printArgs(SimulationArgs* args)

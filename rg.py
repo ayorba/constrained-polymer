@@ -1,24 +1,12 @@
-#!/usr/bin/env python3
-# helper functions to calculate statistics for folded x-ray pdb structures
-
 import sys
 import numpy as np
-from Bio.PDB import PDBParser, MMCIFParser
+from Bio.PDB import PDBParser
 
-import matplotlib
-matplotlib.rcParams.update({"mathtext.fontset": "stix", "font.family": "STIXGeneral"})
-import matplotlib.pyplot as plt
-import os
-
-###### STATS ######
-def rg_file(filename: str):
-    if filename.endswith(".pdb"):
-        struct = load_pdb(filename)
-    elif filename.endswith(".mmcif"):
-        struct = load_mmcif(filename)
-    return rg(np.array([r["CA"].get_vector().get_array() for r in struct.get_residues() if "CA" in r]))
-
-def rg(coords):
+def rg(pdb_file):
+    parser = PDBParser(QUIET=True)
+    struct = parser.get_structure("p", pdb_file)
+    coords = np.array([r["CA"].get_vector().get_array()
+                       for r in struct.get_residues() if "CA" in r])
     r_com = coords.mean(axis=0)
     return np.sqrt(((coords - r_com) ** 2).sum(axis=1).mean())
 
@@ -28,22 +16,11 @@ def rg_n(coords, n):
     r_com = windows.mean(axis=1, keepdims=True)
     return np.sqrt(((windows - r_com) ** 2).sum(axis=2).mean(axis=1)).mean()
 
-
-def load_pdb(filename: str):
-    if filename.endswith(".pdb"):
-        pdb_parser = PDBParser(QUIET=True)
-        structure = pdb_parser.get_structure("p", filename)
-        return structure
-
-def load_mmcif(filename: str):
-    if filename.endswith(".cif"):
-        mmcif_parser = MMCIFParser(QUIET=True)
-        structure = mmcif_parser.get_structure("p", filename)
-        return structure
-        
-
 if __name__ == "__main__":
-
+    import matplotlib
+    matplotlib.rcParams.update({"mathtext.fontset": "stix", "font.family": "STIXGeneral"})
+    import matplotlib.pyplot as plt
+    import os
     pdb_file = sys.argv[1]
     parser = PDBParser(QUIET=True)
     struct = parser.get_structure("p", pdb_file)
