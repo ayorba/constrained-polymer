@@ -5,6 +5,7 @@ polymer
 __pycache__/
 pdb_structures/
 papers/
+.snakemake/
 *.png
 *.jpg
 *.jpeg
