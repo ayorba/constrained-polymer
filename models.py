@@ -4,6 +4,7 @@ import scipy.optimize
 import Bio.PDB as PDB
 from Bio.PDB import PDBParser, MMCIFParser
 
+import sys
 import stats
 
 def load_pdb(filename: str)->PDB.Structure.Structure:
@@ -136,6 +137,31 @@ def norm(x: np.ndarray):
     return np.linalg.norm(x)
 
 if __name__=="__main__":
-    my_crw = CRW(100)
-    my_crw.show()
-    my_crw.write_sim_config("../../input/crw_100.txt")
+    # call with python models.py CRW 100 40-1000
+    from tqdm import tqdm
+    script = sys.argv[0]
+    args = sys.argv[1:]
+    print(args)
+    crw_list = []
+    filenames = []
+    if args[0]=="CRW":
+        num_crw = int(args[1]) if int(args[1]) else 0
+        ranges = [int(arg) for arg in args[2].split("-")]
+        low = ranges[0]
+        high = ranges[1]
+        dir = args[3] if len(args) == 4 else "./"
+        print(num_crw, ranges, low, high)
+        # generate 1000 CRW polymers of length 10-1000, and record their statistics
+        rng = np.random.default_rng()
+        crw_list = [CRW(int(i)) for i in tqdm(list(np.floor(np.logspace(np.log10(low), np.log10(high), num_crw))))]
+        print(crw_list)
+    
+    for crw in tqdm(crw_list):
+        filename = f"crw_{crw.n}.txt"
+        filenames.append(filename)
+        crw.write_sim_config(f"{dir}/{filename}")
+
+    with open(f"{dir}/filenames.txt", "w") as names_file:
+        names_file.write("\n".join(filenames))
+
+    
