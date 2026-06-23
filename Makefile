@@ -12,13 +12,15 @@ EXECUTABLE = polymer
 
 
 all: $(EXECUTABLE)
-	@make clean-temp
+	@make clean-tempa
+	cp $(EXECUTABLE) ../../bin/$(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
+
 
 -include $(SOURCES:.cpp=.d)
 

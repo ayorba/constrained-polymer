@@ -1,20 +1,22 @@
-CF_MAGS = ["0.001", "0.0032", "0.01", "0.032", "0.1", "0.32"]
+# CF_MAGS = ["0.001", "0.0032", "0.01", "0.032", "0.1", "0.32"]
+CF_MAGS = [".01"]
+DTS = ["1e-3"]
+INITIAL_TEMPS = ["1e-2"]
+DAMPINGS = [".01"]
+INPUT_DIR = "/home/accts/ajy27/ohernlab/input"
+OUTPUT_DIR = "/home/accts/ajy27/ohernlab/output"
 
 found = glob_wildcards(
-    "../../input/rw_len_{polymer_len}_no_{polymer_number}.txt"
+    f"{INPUT_DIR}/rw_len_{polymer_len}_no_{polymer_number}.txt"
 )
 
 INPUT_IDS = list(zip(found.polymer_len, found.polymer_number))
 
 rule all:
     input:
-        [
-            (
-                f"../../output/{cf_mag}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr"
-            )
+            expand("{out_dir}/cf_mag_{cf_mag}/temp_{temp}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr", out_dir=OUTPUT_DIR, cf_mag=CF_MAGS, temp=INITIAL_TEMPS, polymer_len=)
             for cf_mag in CF_MAGS
             for polymer_len, polymer_number in INPUT_IDS
-        ]
 
 rule collapse_polymer:
     input:
