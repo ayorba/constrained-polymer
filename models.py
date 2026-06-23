@@ -44,7 +44,8 @@ class CRW:
                         break
                 else:
                     stuck = True
-                    break
+                    print("stuck during CRW init, exiting...")
+                    exit(0)
             if not stuck:
                 self.coords = coords
                 return
