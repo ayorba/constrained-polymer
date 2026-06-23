@@ -10,8 +10,7 @@ rule all:
     input:
         [
             (
-                f"../../output/{cf_mag}/"
-                f"rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr"
+                f"../../output/{cf_mag}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr"
             )
             for cf_mag in CF_MAGS
             for polymer_len, polymer_number in INPUT_IDS
@@ -24,8 +23,7 @@ rule collapse_polymer:
         "../../output/{cf_mag}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr"
     params:
         out_prefix=lambda wc: (
-            f"../../output/{wc.cf_mag}/"
-            f"rw_len_{wc.polymer_len}_no_{wc.polymer_number}_"
+            f"../../output/{wc.cf_mag}/rw_len_{wc.polymer_len}_no_{wc.polymer_number}_"
         )
     wildcard_constraints:
         cf_mag=r"0\.001|0\.0032|0\.01|0\.032|0\.1|0\.32"
@@ -40,8 +38,19 @@ rule collapse_polymer:
             --dt .0001 \
             --initial-temp 1e-6 \
             --writestep 100000 \
-            --in input/ \
+            --in ../../input/ \
             --infile "rw_len_{wildcards.polymer_len}_no_{wildcards.polymer_number}.txt" \
             --out "{params.out_prefix}" \
             --cf-mag "{wildcards.cf_mag}"
         """
+
+"""        polymer 
+        --simtype collapse_polymer 
+        --damping .1 
+        --dt .0001 
+        --initial-temp 1e-6 
+        --writestep 100000 
+        --in ../../input/ 
+        --infile  rw_len_101_no_34.txt 
+        --out ../../output/.1/test 
+        --cf-mag .1"""
