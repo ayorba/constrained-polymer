@@ -2,8 +2,8 @@ from itertools import product
 from pathlib import Path
 
 CF_MAGS = [".01", ".02", ".05", ".1", ".2", ".5", "1"]
-DTS = ["1e-6"]
-INITIAL_TEMPS = ["1e-2"]
+DTS = ["1e-4"]
+INITIAL_TEMPS = ["1e-5"]
 DAMPINGS = ["1"]
 
 INPUT_DIR = Path("/home/accts/ajy27/ohernlab/programs/constrained-polymer/input")
@@ -94,5 +94,5 @@ rule collapse_polymer:
             --infile {params.filename:q} \
             --out {params.output_path:q} \
             --cf-mag {params.cf_mag:q} \
-            > /dev/null 2>&1
+            > {log:q} 2>&1
         """
