@@ -50,7 +50,7 @@ class CRW:
                     break
 
             if not stuck:
-                self.coords = coords
+                self.coords = coords - coords.mean(axis=0)
                 stuck=None
                 return
 

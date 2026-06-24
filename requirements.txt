@@ -1,0 +1,9 @@
+biopython
+ipdb
+ipykernel
+matplotlib
+pandas
+pip
+scipy
+snakemake
+tqdm

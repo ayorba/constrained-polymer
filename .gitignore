@@ -1,3 +1,5 @@
+logs/
+workflow_state/
 bin/
 input/
 output/
