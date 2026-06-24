@@ -7,6 +7,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4G
+#SBATCH --constraint=oldest
 #SBATCH --time=00:10:00
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=alden.yorba@yale.edu
