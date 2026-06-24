@@ -13,7 +13,7 @@
 mkdir -p input output logs bin workflow_state
 
 module reset
-module load python
+module load Python/3.12.3-GCCcore-13.3.0
 
 # Create the venv and install packages
 python -m venv ./.venv
