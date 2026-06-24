@@ -14,15 +14,13 @@ INPUT_IDS = list(zip(found.polymer_len, found.polymer_number))
 
 rule all:
     input:
-            expand("{out_dir}/cf_mag_{cf_mag}/temp_{temp}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr", out_dir=OUTPUT_DIR, cf_mag=CF_MAGS, temp=INITIAL_TEMPS, polymer_len=)
-            for cf_mag in CF_MAGS
-            for polymer_len, polymer_number in INPUT_IDS
+            expand("{out_dir}/cf_mag_{cf_mag}/temp_{temp}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr", out_dir=OUTPUT_DIR, cf_mag=CF_MAGS, temp=INITIAL_TEMPS, polymer_len=found.polymer_len, polymer_number=found.polymer_number)
 
 rule collapse_polymer:
     input:
-        "../../input/rw_len_{polymer_len}_no_{polymer_number}.txt"
+        f"{INPUT_DIR}/rw_len_{{polymer_len}}_no_{{polymer_number}}.txt"
     output:
-        "../../output/{cf_mag}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr"
+        f"{OUTPUT_DIR}/cf_mag_{{cf_mag}}/temp_{temp}/rw_len_{polymer_len}_no_{polymer_number}_final_config.xyzr"
     params:
         out_prefix=lambda wc: (
             f"../../output/{wc.cf_mag}/rw_len_{wc.polymer_len}_no_{wc.polymer_number}_"
