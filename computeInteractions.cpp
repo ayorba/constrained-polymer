@@ -19,7 +19,8 @@ void InteractionManager::computeInteractions()
 	computeBondInteractions();
 	computeAngleInteractions();
 	computeDihedralInteractions();
-	computeExternalInteractions();
+	//computeExternalInteractions();
+	computeContinuousExternalInteractions();
 
 }
 

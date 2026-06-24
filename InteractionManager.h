@@ -45,6 +45,9 @@ class InteractionManager
 		// Include central force on each sphere
 		void computeExternalInteractions();
 
+		// Include a continuous central force on each sphere, that decays to 0 close to the origin
+		void computeContinuousExternalInteractions();
+
 		// Zero the net force and potential energy on each sphere
 		void zeroForceAndEnergy()
 		{

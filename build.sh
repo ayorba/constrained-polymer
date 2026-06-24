@@ -24,4 +24,4 @@ pip install -r requirements.txt
 make
 
 # Generate initial RW polymers
-python models.py CRW 100 100-100 input/
+python models.py CRW 1 100-100 input/

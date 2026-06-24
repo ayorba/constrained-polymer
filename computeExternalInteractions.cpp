@@ -4,7 +4,6 @@
 
 // Include any external forces, e.g., central force, on each sphere
 
-
 void InteractionManager::computeExternalInteractions()
 {
 
@@ -41,8 +40,37 @@ void InteractionManager::computeExternalInteractions()
 
 		}
 	}
-
-
 }
+
+void InteractionManager::computeContinuousExternalInteractions() {
+	if (central_force_mag > 0.0) {
+		// force on each particle diminishes near origin
+		double scale;
+		Vector3D centralF;
+		double fMag;
+		double rMag;
+
+		for (auto& sph_ptr : sim->spheres) {
+			auto* sph = sph_ptr.get();
+
+			Vector3D r = -sph->position;
+			rMag = r.norm();
+
+			Vector3D unitba(0,0,0);
+			unitba = r * (1 / rMag);
+			
+
+			fMag = (rMag < sph->diameter/2) ? central_force_mag * rMag / (sph->diameter/2): central_force_mag;
+
+			scale = fMag * pow(sph->diameter / sim->max_diameter, 2.25);
+			centralF = unitba*scale;
+
+			sph->force += centralF;
+
+		}
+	}
+}
+
+
 
 
