@@ -6,7 +6,6 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4G
-#SBATCH --constraint=oldest
 #SBATCH --time=10:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alden.yorba@yale.edu
@@ -22,7 +21,7 @@ source ./.venv/bin/activate
 pip install -r requirements.txt
 
 # Build polymer
-make -j 4
+make
 
 # Generate initial RW polymers
 python models.py CRW 100 100-100 input/
