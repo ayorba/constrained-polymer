@@ -1,16 +1,14 @@
 #!/bin/bash
+
 #SBATCH --job-name=setup
 #SBATCH --output=setup.log
 #SBATCH --error=error_setup.log
-
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4G
 #SBATCH --constraint=oldest
 #SBATCH --time=00:10:00
-#SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=alden.yorba@yale.edu
 
 mkdir -p input output logs bin workflow_state
 
