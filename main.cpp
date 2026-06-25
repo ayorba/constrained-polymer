@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 	double CF_mag = args.CF_mag;
 	bool cont_sim = args.cont_sim;
 
-
 	// Set up objects
 	Simulation sim;
 
@@ -100,10 +99,14 @@ int main(int argc, char *argv[])
 		int numsteps = 100000;
 		md.runNVE(numsteps);
 	}
+	else if (simtype=="minimizeenergy")
+	{
+		md.writeFiles(0,0,1);
+		md.runMinimizeEnergy();
+	}
 	else if(simtype=="dampedmd")
 	{
 		md.writeFiles(0, 0, 1);
-
 		md.runDampedMD();
 	}
 	else if(simtype=="collapse_polymer")

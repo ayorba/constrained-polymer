@@ -156,8 +156,8 @@ if __name__=="__main__":
         crw_list = [CRW(int(i)) for i in tqdm(list(np.floor(np.logspace(np.log10(low), np.log10(high), num_crw))))]
         print(crw_list)
     
-    for crw in tqdm(crw_list):
-        filename = f"crw_{crw.n}.txt"
+    for i, crw in enumerate(tqdm(crw_list)):
+        filename = f"crw_{crw.n}_{i}.txt"
         filenames.append(filename)
         crw.write_sim_config(f"{dir}/{filename}")
 

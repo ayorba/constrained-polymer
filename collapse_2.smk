@@ -2,9 +2,9 @@ from itertools import product
 from pathlib import Path
 
 CF_MAGS = [".01", ".02", ".05", ".1", ".2", ".5", "1"]
-DTS = ["1e-4"]
+DTS = ["1e-3"]
 INITIAL_TEMPS = ["1e-5"]
-DAMPINGS = ["1"]
+DAMPINGS = [".1"]
 
 INPUT_DIR = Path("/home/accts/ajy27/ohernlab/programs/constrained-polymer/input")
 OUTPUT_DIR = Path("/home/accts/ajy27/ohernlab/programs/constrained-polymer/output")
@@ -35,7 +35,6 @@ JOBS = [
 
 def get_job(wildcards):
     return JOBS[int(wildcards.job)]
-
 
 def output_path(wildcards):
     job = get_job(wildcards)

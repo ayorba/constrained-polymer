@@ -52,7 +52,7 @@ void printUsage()
 
         << "Labeled form:\n"
         << "  " << program << "\n"
-        << "    --simtype {NVE,dampedMD,collapse_polymer}\n"
+        << "    --simtype {NVE,minimizeEnergy,dampedMD,collapse_polymer}\n"
         << "    --dt VALUE\n"
         << "    --damping VALUE\n"
         << "    --initial-temp VALUE\n"
@@ -64,7 +64,7 @@ void printUsage()
         << "    --cont-sim {0,1}\n\n"
 
         << "Options:\n"
-        << "  --simtype TYPE\tSimulation type, {NVE, dampedMD, collapse_polymer}\n"
+        << "  --simtype TYPE\tSimulation type, {NVE, minimizeEnergy, dampedMD, collapse_polymer}\n"
         << "  --dt VALUE\t\tSimulation time step, must be > 0\n"
         << "  --damping VALUE\tDamping coefficient, must be >= 0\n"
         << "  --initial-temp VALUE\tInitial temperature, must be >= 0\n"
@@ -189,9 +189,9 @@ SimulationArgs parseCommandLine(int argc, char* argv[])
 	args.CF_mag       = optDouble("cf-mag", 0.0);
 	args.cont_sim     = static_cast<bool>(optInt("cont-sim", 0));
 
-	if (args.simtype != "NVE" && args.simtype != "dampedMD" && args.simtype != "collapse_polymer")
+	if (args.simtype != "NVE" && args.simtype != "dampedMD" && args.simtype != "collapse_polymer" && args.simtype != "minimizeEnergy")
 	{
-		std::cerr << "Error: --simtype must be NVE, dampedMD, or collapse_polymer;"
+		std::cerr << "Error: --simtype must be NVE, dampedMD, minimizeEnergy, or collapse_polymer;"
 		          << " got '" << args.simtype << "'.\n\n";
 		printUsage();
 		exit(EXIT_FAILURE);

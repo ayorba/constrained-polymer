@@ -40,11 +40,13 @@ class MD
 		void NVT_MD(double desired_temp);
 		void runDampedMD();
 		void dampedMD();
+		void runMinimizeEnergy();
+		void minimizeEnergy();
 		void adjust_dt();
 		bool checkForPause(int step);
 		void writeFiles(int step, bool overwrite_files=1, bool write_vis_file=0, bool write_traj_file=1);
 		void loadConfig();
-
+		
 
 		void computeKE()
 		{
