@@ -19,4 +19,4 @@ module load snakemake
 source ./.venv/bin/activate
 
 # 3. Execution command
-snakemake -s collapse_2.smk --cores 64
+snakemake -s collapse_2.smk --cores 128
