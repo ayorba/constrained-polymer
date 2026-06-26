@@ -1,21 +1,41 @@
 #!/bin/bash
-#SBATCH --job-name=cf_mag_MD
-#SBATCH --output=result_%j.log
-#SBATCH --error=slurm_%j.log
+
+#SBATCH --job-name=snakemake
+#SBATCH --output=results/%j.log
+#SBATCH --error=errors/%j.log
 #SBATCH --nodes=1
-#SBATCH --ntasks=128
+#SBATCH --ntasks=64
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=8G
+#SBATCH --mem=2G
 #SBATCH --time=24:00:00
-#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-type=ALL
 #SBATCH --mail-user=alden.yorba@yale.edu
 
-# 1. Clean environmenst and load required software modules
-module purge
-module load snakemake
+# 1. Clean environment and load required software modules
 
-# 2. Activate virtual environments if necessary
+rm -rf ./.venv
+
+# Create the venv and install packages
+mkdir -p input output logs bin workflow_state
+
+module reset
+module load Python/3.12.3-GCCcore-13.3.0
+
+python -m venv ./.venv
+
+# 2. Activate virtual environment and install all packages
+
 source ./.venv/bin/activate
+pip install -r requirements.txt
 
-# 3. Execution command
-snakemake -s collapse_2.smk --cores 128
+# 3. Build polymer
+make -j 8
+polymer --help
+
+# 4. Generate input files
+
+python generate_inputs.py
+
+# 5. Run snakemake workflow
+
+snakemake -s collapse.smk --cores 64
