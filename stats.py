@@ -29,6 +29,18 @@ def rg_n(coords, n):
     r_com = windows.mean(axis=1, keepdims=True)
     return np.sqrt(((windows - r_com) ** 2).sum(axis=2).mean(axis=1)).mean()
         
+def load_pdb(filename: str)->PDB.Structure.Structure:
+    if filename.endswith(".pdb"):
+        pdb_parser = PDBParser(QUIET=True)
+        structure = pdb_parser.get_structure("p", filename)
+        return structure
+
+def load_mmcif(filename: str)->PDB.Structure.Structure:
+    if filename.endswith(".cif"):
+        mmcif_parser = MMCIFParser(QUIET=True)
+        structure = mmcif_parser.get_structure("p", filename)
+        return structure
+
 if __name__ == "__main__":
     pdb_file = sys.argv[1]
     parser = PDBParser(QUIET=True)
