@@ -2,7 +2,6 @@
 #SBATCH --job-name=cf_mag_MD
 #SBATCH --output=result_%j.log
 #SBATCH --error=slurm_%j.log
-#SBATCH --partition=standard
 #SBATCH --nodes=1
 #SBATCH --ntasks=128
 #SBATCH --cpus-per-task=1
