@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=cf_mag_MD
 #SBATCH --output=result_%j.log
-#SBATCH --error=error_%j.log
+#SBATCH --error=slurm_%j.log
 #SBATCH --partition=standard
 #SBATCH --nodes=1
-#SBATCH --ntasks=64
+#SBATCH --ntasks=128
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=1G
+#SBATCH --mem=8G
 #SBATCH --time=24:00:00
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=alden.yorba@yale.edu

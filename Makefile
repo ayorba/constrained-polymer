@@ -13,7 +13,7 @@ EXECUTABLE = polymer
 
 all: $(EXECUTABLE)
 	@make clean-temp
- 	cp $(EXECUTABLE) bin/$(EXECUTABLE)
+	cp $(EXECUTABLE) bin/$(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
