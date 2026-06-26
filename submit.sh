@@ -16,7 +16,7 @@
 rm -rf ./.venv
 
 # Create the venv and install packages
-mkdir -p input output logs bin workflow_state
+mkdir -p input output results errors logs bin workflow_state
 
 module reset
 module load Python/3.12.3-GCCcore-13.3.0
